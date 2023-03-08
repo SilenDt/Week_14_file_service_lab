@@ -11,18 +11,20 @@ import java.util.List;
 public class Folder {
 
     //INSTANCE VARIABLES:
+
     @Id
+    //@id = unique identifier
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "title")
     private String title;
-
-
 
     //ONE TO MANY: one folder to many files
     @OneToMany(mappedBy = "folder")
     @JsonIgnoreProperties({"folder"})
+    //when we convert the files to a table, ignore the property of 'folder'
     private List<File> files;
 
     //MANY TO ONE: many folders to one person
