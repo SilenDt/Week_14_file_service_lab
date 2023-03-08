@@ -1,7 +1,11 @@
 package com.codeclan.lab.fileservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "people")
 public class Person {
@@ -15,13 +19,14 @@ public class Person {
     private String name;
 
     //ONE TO MANY: one person has many folders
-//    @OneToMany
-//    private ArrayList<Folder> folders;
+    @OneToMany(mappedBy = "person")
+    @JsonIgnoreProperties({"person"})
+    private List<Folder> folders;
+
 
     //CONSTRUCTOR:
     public Person(String name) {
         this.name = name;
-//        this.folders = folders;
     }
     //BLANK CONSTRUCTOR:
     public Person() {};
